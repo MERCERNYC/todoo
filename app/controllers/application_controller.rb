@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  #This is beautiful. SO I borrowed it from the Learn.co example.
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
