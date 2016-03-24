@@ -4,16 +4,18 @@ class TasksController < ApplicationController
     redirect_if_not_logged_in
     @user = current_user
     @lists = List.all
-    #@tasks = List.tasks
     erb :'tasks/show'
   end
 
   get '/tasks/new' do
     redirect_if_not_logged_in
+    @lists = List.all
     erb :'/tasks/new'
   end
 
-  get '/tasks/:id' do
-    "Do a thing!"
+  post '/tasks/new' do
+    Task.create(:name => params[:name], :list_id => params[:list_id])
+    redirect '/tasks'
   end
+
 end

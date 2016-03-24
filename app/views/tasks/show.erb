@@ -4,6 +4,10 @@
 <h2><%= list.name %></h2>
 <p>List id: <%= list.id %></p>
 
+<% list.tasks.each do |task| %>
+<p>- <%= task.name %></p>
+<% end %>
+
 <a href="/lists/<%=list.id%>/edit">Edit This List</a><br>
 <a href="/lists/<%=list.id%>/delete">Delete This List</a>
 <% end %>

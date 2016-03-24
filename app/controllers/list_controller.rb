@@ -7,7 +7,7 @@ class ListsController < ApplicationController
 
   post '/lists/new' do
     list = List.create(:name => params[:name], :user_id => session[:user_id])
-    task = Task.create(:name => params[:task])
+    task = Task.create(:name => params[:tasks][:name])
     list.tasks << task unless list.tasks.include?(task)
     redirect '/tasks'
   end
@@ -32,7 +32,7 @@ class ListsController < ApplicationController
 
   delete '/lists/:id' do 
     @list = List.find_by_id(params[:id])
-    @list.delete
+    @list.destroy
     redirect '/tasks'
   end
 
