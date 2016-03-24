@@ -1,16 +1,13 @@
 <h1>Hello <%=@user.username %>!</h1>
 
-<h2>List 1</h2>
-<ul>
-<li>Task 1</li>
-<li>Task 2</li>
-</ul>
+<% @lists.each do |list|%>
+<h2><%= list.name %></h2>
+<p>List id: <%= list.id %></p>
 
-<h2>List 2</h2>
-<ul>
-<li>Task A</li>
-<li>Task B</li>
-</ul>
+<a href="/lists/<%=list.id%>/edit">Edit This List</a><br>
+<a href="/lists/<%=list.id%>/delete">Delete This List</a>
+<% end %>
 
+<hr>
 <a href="lists/new">Create New List</a><br>
 <a href="tasks/new">Create New Task</a>
