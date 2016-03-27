@@ -6,9 +6,10 @@
 <br>
 <label>Add To An Existing List</label><br>
 <% @lists.each do |list| %>
+<% if list.user_id == @user.id %>
 <input type="checkbox" name="list_id" value="<%=list.id%>"><%=list.name%><br>
 <% end %>
-
+<% end %>
 <br>
 <input class="btn btn-primary" type="submit" name="create" value="Create">
 </form>

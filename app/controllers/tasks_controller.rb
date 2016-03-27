@@ -4,11 +4,13 @@ class TasksController < ApplicationController
     redirect_if_not_logged_in
     @user = current_user
     @lists = List.all
+    #Is there a faster way to do this without pulling all the lists?
     erb :'tasks/show'
   end
 
   get '/tasks/new' do
     redirect_if_not_logged_in
+    @user = current_user
     @lists = List.all
     erb :'/tasks/new'
   end
