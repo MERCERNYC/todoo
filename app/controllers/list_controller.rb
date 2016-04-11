@@ -6,9 +6,9 @@ class ListsController < ApplicationController
   end
 
   post '/lists/new' do
-    list = List.create(:name => params[:name], :user_id => session[:user_id])
-    task = Task.create(:name => params[:tasks][:name])
-    list.tasks << task unless list.tasks.include?(task)
+    @user = current_user
+    list = @user.lists.create(:name => params[:name])
+    task = list.tasks.create(:name => params[:tasks][:name])
     redirect '/tasks'
   end
 

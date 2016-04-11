@@ -3,8 +3,7 @@ class TasksController < ApplicationController
   get '/tasks' do
     redirect_if_not_logged_in
     @user = current_user
-    @lists = List.all
-    #Is there a faster way to do this without pulling all the lists?
+    @lists = @user.lists
     erb :'tasks/show'
   end
 
@@ -19,7 +18,7 @@ class TasksController < ApplicationController
   post '/tasks/new' do
     Task.create(:name => params[:name], :list_id => params[:list_id])
     redirect '/tasks'
-  end
+    end
 
 # Builds a new task associated with the LIST ID
   get '/tasks/new/:id' do
